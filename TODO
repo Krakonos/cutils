@@ -1,0 +1,17 @@
+Here is the list of things that needs to be done:
+
+Data structures
+---------------
+- fifo
+- priority queue
+- heap
+- B-tree (working on it)
+- AVL tree
+- various graph interpretations
+
+
+Algorithms
+----------
+(graph)
+- Dijsktra's algorithm
+- Floyd–Warshall algorithm

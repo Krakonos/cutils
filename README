@@ -5,5 +5,5 @@
 A collection of C functions, data structures and programs that you have
 written at least a hundred times. You will have to do so no more :-)
 
-This software is distributed as-is, that means you can modify, copy,
-use it as you wish without restrictions.
+This software is distributed under the terms of BSD license. For more 
+information, see LICENSE file in this directory.
