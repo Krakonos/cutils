@@ -15,3 +15,7 @@ Algorithms
 (graph)
 - Dijsktra's algorithm
 - Floyd–Warshall algorithm
+
+Others
+------
+- reference counting (a'la kref in Linux kernel)
