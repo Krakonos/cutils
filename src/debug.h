@@ -13,7 +13,9 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
+
 #ifdef DEBUG
+#include <stdio.h>
 #define debug(msg) fprintf(stderr, "(Debug): %s\n", msg)
 #define debugf(fmt,...) fprintf(stderr, "(Debug): " fmt "\n", __VA_ARGS__)
 #else

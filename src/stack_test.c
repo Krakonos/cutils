@@ -24,7 +24,7 @@
 int freed;
 
 int destroy(void *item) {
-	free(item);
+	free(*(int**)item);
 	freed++;
 	return 0;
 }
@@ -33,32 +33,31 @@ int main(int argc, char **argv) {
 	int ok;
 	int globok = 0;
 
-	stack_t *stack = stack_init(0);
+	stack_t *stack = stack_init(0, sizeof(int));
 	printf("Testing stack pusp/pop... ");
 	for (int i = 0; i < TEST_LENGTH; i++) {
-		int *ptr = malloc(sizeof(int));
-		*ptr = i;
-		stack_push( stack, ptr );
+		stack_push( stack, &i );
 	}
 
 	ok = 1;
 	for (int i = TEST_LENGTH-1; i >= 0; i--) {
-		int *ptr = (int*) stack_pop(stack);
-		if (i != *ptr) ok = 0;
-		free(ptr);
+		int r;
+		stack_pop(stack, &r);
+		if (i != r) ok = 0;
 	}
 	
-	TEST(ok, globok++)
 	stack_destroy( stack );
+	
+	TEST(ok, globok++)
 
-	stack = stack_init(0);
+	stack = stack_init(0, sizeof(int*));
 	printf("Testing stack autoremove... ");
 	freed = 0;
 	stack->func_destruct = &destroy;
 	for (int i = 0; i < TEST_LENGTH; i++) {
 		int *ptr = malloc(sizeof(int));
 		*ptr = i;
-		stack_push( stack, ptr );
+		stack_push( stack, &ptr );
 	}
 	stack_destroy( stack );
 

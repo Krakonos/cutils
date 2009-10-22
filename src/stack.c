@@ -10,18 +10,18 @@
  * e-mail: ladislav.laska@gmail.com
  *
  ******************************************************************************/
-
+#include <string.h>
 #include <stdlib.h>
 #include <errno.h>
 
 #include "stack.h"
-#include "debug.h"
 
-stack_t* stack_init(int initial_size) {
+stack_t* stack_init( int initial_size, int item_size ) {
 	stack_t *stack = malloc(sizeof(stack_t));
 	stack->size = (initial_size > 0) ? initial_size : STACK_DEFAULT_SIZE;
+	stack->item_size = item_size;
 	stack->sp = 0;
-	stack->data = malloc(sizeof(void*)*stack->size);
+	stack->data = malloc(item_size * stack->size);
 	CHECK_PTR(stack->data, return NULL;)
 	stack->func_destruct = NULL;
 	return stack;
@@ -41,14 +41,15 @@ int stack_destroy(stack_t *stack) {
 	return 0;
 }
 
-void* stack_peek( stack_t *stack ) {
-	return STACK_LAST(stack);
+int stack_peek( stack_t *stack, void *item ) {
+	memcpy(item, STACK_LAST(stack), stack->item_size);
+	return 0;
 }
 
-void* stack_pop( stack_t *stack) {
-	void *ptr = STACK_LAST(stack);
+int stack_pop( stack_t *stack, void *item) {
+	memcpy(item, STACK_LAST(stack), stack->item_size);
 	stack->sp--;
-	return ptr;
+	return 0;
 }
 
 int stack_push( stack_t *stack, void *item) {
@@ -58,7 +59,13 @@ int stack_push( stack_t *stack, void *item) {
 		if ((ret = stack_resize( stack, stack->size*2)) != 0)
 			return ret;
 	}
-	stack->data[stack->sp++] = item;
+	int ptr = (int) stack->data;
+	ptr += (int) stack->sp*stack->item_size;
+	
+	memcpy( PTR_TO(stack, stack->sp) , item, stack->item_size );
+
+	stack->sp++;
+
 	return 0;
 }
 
@@ -69,7 +76,7 @@ int stack_resize( stack_t *stack, int size ) {
 	 * if no more space is needed .
 	 */
 	int newsize = (size > stack->sp) ? size : stack->sp;
-	stack->data = realloc( stack->data, newsize*sizeof(void*) );
+	stack->data = realloc( stack->data, newsize*stack->item_size );
 	int err = errno;
 	/* Check for failure */
 	if (err == ENOMEM)
