@@ -31,7 +31,7 @@ int destroy(void *item) {
 
 int main(int argc, char **argv) {
 	int ok;
-	int globok = 0;
+	int globad = 0;
 
 	stack_t *stack = stack_init(0, sizeof(int));
 	printf("Testing stack pusp/pop... ");
@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
 	
 	stack_destroy( stack );
 	
-	TEST(ok, globok++)
+	TEST(ok, globad++)
 
 	stack = stack_init(0, sizeof(int*));
 	printf("Testing stack autoremove... ");
@@ -61,13 +61,14 @@ int main(int argc, char **argv) {
 	}
 	stack_destroy( stack );
 
-	TEST(freed == TEST_LENGTH, globok++) 
+	TEST(freed == TEST_LENGTH, globad++) 
 	
-	if (globok) 
-		printf(">> %i test FAILED.\n", globok);
-	else printf(">> All test passed.\n");
+//	if (globad) 
+//		printf(">> %i test FAILED.\n", globad);
+//	else printf(">> All test passed.\n");
 
-	return globok;
+
+	return globad;
 }
 
 

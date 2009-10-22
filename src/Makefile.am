@@ -6,8 +6,11 @@ AM_LDFLAGS =
 # the previous manual Makefile
 
 # Create test cases
-bin_PROGRAMS = stack_test
+check_PROGRAMS = stack_test
 stack_test_SOURCES = stack_test.c stack_test.h
+
+TESTS = stack_test
+
 stack_test_LDADD = libcutils.la
 
 # Create library
