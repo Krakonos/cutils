@@ -16,10 +16,9 @@
 
 
 #include "stack.h"
+#include "test.h"
 
 #define TEST_LENGTH 1000
-
-#define TEST(var,...) if (var) printf("ok\n"); else { printf("FAILED\n"); __VA_ARGS__; }
 
 int freed;
 

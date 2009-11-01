@@ -38,7 +38,7 @@ int stack_push( stack_t *stack, void *item );
 int stack_pop( stack_t *stack, void *item );
 int stack_peek( stack_t *stack, void *item );
 int stack_destroy(stack_t *stack);
-stack_t* stack_init( int initial_size, int item_size );
+stack_t* stack_init( int initial_size, size_t item_size );
 
 #endif
 // vim:sw=4:ts=4
