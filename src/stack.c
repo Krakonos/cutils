@@ -15,6 +15,7 @@
 #include <errno.h>
 
 #include "stack.h"
+#include "macro.h"
 
 stack_t* stack_init( int initial_size, size_t item_size ) {
 	stack_t *stack = malloc(sizeof(stack_t));

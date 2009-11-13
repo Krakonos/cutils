@@ -2,8 +2,8 @@ Here is the list of things that needs to be done:
 
 Data structures
 ---------------
-- priority queue
 - heap
+- priority queue
 - B-tree (working on it)
 - AVL tree
 - various graph interpretations

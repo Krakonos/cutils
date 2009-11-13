@@ -12234,9 +12234,6 @@ fi
 
 # end of my stuff
 
-#AC_CONFIG_SRCDIR([src/stack_test.c])
-#AC_CONFIG_HEADERS([config.h])
-
 # Checks for programs.
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'

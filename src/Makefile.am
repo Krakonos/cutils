@@ -24,7 +24,11 @@ queue_test_LDADD = libcutils.la
 cutils_includedir = $(includedir)/cutils
 cutils_include_HEADERS = debug.h \
 						stack.h \
-						queue.h
+						queue.h \
+						htable.h 
 lib_LTLIBRARIES = libcutils.la
-libcutils_la_SOURCES = stack.c stack.h \
-						queue.c queue.h
+libcutils_la_SOURCES = macro.h \ 
+						stack.c stack.h \
+						queue.c queue.h \
+						strhash.c strhash.h \
+						htable.c htable.h

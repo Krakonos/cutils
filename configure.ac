@@ -19,9 +19,6 @@ AM_MAINTAINER_MODE
 
 # end of my stuff
 
-#AC_CONFIG_SRCDIR([src/stack_test.c])
-#AC_CONFIG_HEADERS([config.h])
-
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_MAKE_SET

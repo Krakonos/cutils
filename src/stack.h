@@ -15,6 +15,7 @@
 
 #include <errno.h>
 
+
 #ifndef STACK_DEFAULT_SIZE
 #define STACK_DEFAULT_SIZE 64
 #endif
@@ -22,7 +23,6 @@
 //((void*)((int)stack->data+((stack->sp-1)*stack->item_size)))
 #define PTR_TO(stack, idx) ((void*) (((int) (stack)->data)+((stack)->item_size * (idx))) )
 #define STACK_LAST(stack) PTR_TO((stack), ((stack)->sp-1))
-#define CHECK_PTR(ptr, cmd) if ((ptr) == NULL) { cmd }
 
 typedef struct stack {
 	int size;
