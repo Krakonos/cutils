@@ -10,8 +10,11 @@
  * e-mail: ladislav.laska@gmail.com
  *
  ******************************************************************************/
+#include <config.h>
+
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "htable.h"
 #include "macro.h"
@@ -163,5 +166,23 @@ int htable_destroy(htable_t *table) {
 	free(table);
 	return 0;
 }
+
+#ifdef DEBUG
+/* Print key assuming it's string. DON'T CALL IT IF IT'S NOT! */
+void htable_debug_print_key( htable_t *table, int key ) {
+	fprintf(stderr, "Printing hashtable key %i:", key);
+	while (key != -1) {
+		fprintf(stderr, " ** '%s'\n", (char*) table->data[key].data);
+		key = table->data[key].next;
+	}
+}
+
+/* Print table */
+void htable_debug_print( htable_t *table ) {
+	for (int i = 0; i < table->size; i++) {
+		htable_debug_print_key( table, i );
+	}
+}
+#endif
 
 // vim:sw=4:ts=4

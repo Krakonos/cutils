@@ -13,6 +13,8 @@
 #ifndef _HTABLE_H_
 #define _HTABLE_H_
 
+#include <config.h>
+
 #ifndef HTABLE_DEFAULT_SIZE
 #define HTABLE_DEFAULT_SIZE 64
 #endif
@@ -44,6 +46,12 @@ int   htable_hash( htable_t *table, void *key );
 void *htable_search( htable_t *table, void *key);
 int   htable_insert( htable_t *table, void *key, void *data);
 int   htable_remove( htable_t *table, void *key);
+
+/* Debugging functions */
+#ifdef DEBUG
+void htable_debug_print_key( htable_t *table, int key );
+void htable_debug_print( htable_t *table );
+#endif
 
 #endif
 // vim:sw=4:ts=4
