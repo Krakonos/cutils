@@ -154,6 +154,10 @@ int htable_remove(htable_t *table, void *key) {
 				/* Middle or end of list */
 				table->data[prev].next = table->data[curr].next;
 			}
+
+			/* Free data if destruct function is set */
+			if (table->func_destruct != NULL)
+				table->func_destruct( table->data[curr].key, table->data[curr].data );
 			
 			/* Reclaim item back to free-items list */
 			htable_reclaim(table, curr);
@@ -214,7 +218,6 @@ void htable_forall( htable_t *table, void (*func)(void *key, void *data)) {
 			func(table->data[key].key, table->data[key].data);		
 			key = table->data[key].next;
 		}
-
 	}
 
 	return;
