@@ -13,13 +13,18 @@
 
 #include "strhash.h"
 
-unsigned int strhash( char *string ) {
-	unsigned int hash = 0;
-	int i = 0;
-	while (string[i] != 0 ) {
-		hash = 41*(i + string[i]);
-		i++;
-	}
+/* 
+ * djb2 hashing function
+ *
+ * http://www.cse.yorku.ca/~oz/hash.html
+ */
+
+unsigned long strhash( char *str ) {
+	unsigned long hash = 5381;
+	int c;
+
+	while ((c = *str++))
+		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
 	return hash;
 }

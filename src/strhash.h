@@ -13,7 +13,7 @@
 #ifndef _STRHASH_H_
 #define _STRHASH_H_
 
-unsigned int strhash( char *string );
+unsigned long strhash( char *str );
 
 #endif
 // vim:sw=4:ts=4

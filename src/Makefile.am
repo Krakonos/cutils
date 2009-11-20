@@ -9,7 +9,7 @@ AM_LDFLAGS =
 check_PROGRAMS = stack_test \
 				queue_test \
 				htable_test 
-TESTS = stack_test queue_test
+TESTS = stack_test queue_test htable_test
 
 # Stack test definition
 stack_test_SOURCES = stack_test.c

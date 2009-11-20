@@ -26,30 +26,36 @@ struct htable_item {
 };
 
 typedef struct htable {
-	int   size;
-	int  *keys;
+	int    size;
+	int    used;
+	int   *keys;
+	int    first_free;
 	struct htable_item *data;
-	int   first_free;
-	int (*cmpfunc)(void *d1, void *d2);
-	unsigned int (*hashfunc)(void *data);
+	int 			(*cmpfunc)(void *d1, void *d2);
+	unsigned long 	(*hashfunc)(void *data);
+	void 			(*func_destruct)(void *key, void *data);
 } htable_t;
 htable_t *htable_init( int initial_size );
 htable_t *htable_init_f(int initial_size, 
 					    int (*cmpfunc)(void* d1, void *d2), 
-					    unsigned int (*hashfunc)(void *data) 				);
-int htable_alloc(htable_t *table);
-int htable_reclaim(htable_t *table, int item);
-int htable_resize( htable_t *table, int new_size);
-int htable_destroy(htable_t *table);
+					    unsigned long (*hashfunc)(void *data),
+						void (*func_destruct)(void *key, void *data) 	);
+int  htable_alloc(htable_t *table);
+int  htable_reclaim(htable_t *table, int item);
+int  htable_resize( htable_t *table, int new_size);
+void htable_destroy(htable_t *table);
 
 int   htable_hash( htable_t *table, void *key );
 void *htable_search( htable_t *table, void *key);
 int   htable_insert( htable_t *table, void *key, void *data);
 int   htable_remove( htable_t *table, void *key);
 
+/* Auxilary functions */
+void htable_forall( htable_t *table, void (*func)(void *key, void *data));
+
 /* Debugging functions */
 #ifdef DEBUG
-void htable_debug_print_key( htable_t *table, int key );
+int htable_debug_print_key_and_count( htable_t *table, int key );
 void htable_debug_print( htable_t *table );
 #endif
 

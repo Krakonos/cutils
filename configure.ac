@@ -4,6 +4,7 @@
 AC_PREREQ([2.63])
 AC_INIT(cutils, 0.1, ladislav.laska@gmail.com)
 AC_CONFIG_HEADERS([config.h])
+AC_DEFINE([_XOPEN_SOURCE], [500], [Enable POSIX.1, 2, XPG4 and UNIX 98 extension.])
 
 # My stuff
 AM_INIT_AUTOMAKE(cutils, 0.1)
@@ -28,7 +29,7 @@ AC_ARG_ENABLE(debug,
 
 AS_IF([test "$enable_debug" == "yes"],
 	[
-		AC_DEFINE([DEBUG], 1[], [Enable debugging features])
+		AC_DEFINE([DEBUG], [1], [Enable debugging features])
 	])
 
 # end of my stuff

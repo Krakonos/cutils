@@ -13,6 +13,7 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
+#include <config.h>
 
 #ifdef DEBUG
 #include <stdio.h>
