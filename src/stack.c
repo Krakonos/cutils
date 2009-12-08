@@ -61,8 +61,6 @@ int stack_push( stack_t *stack, void *item) {
 		if ((ret = stack_resize( stack, stack->size*2)) != 0)
 			return ret;
 	}
-	int ptr = (int) stack->data;
-	ptr += (int) stack->sp*stack->item_size;
 	
 	memcpy( PTR_TO(stack, stack->sp) , item, stack->item_size );
 
