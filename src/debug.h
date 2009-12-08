@@ -25,7 +25,7 @@
 #endif
 
 #define warn(msg) fprintf(stderr, "(Warning): %s\n", msg)
-#define warnf(fmt,...) fprintf(stderr, "(Warning): " fmt "\n", __VA_ARGS)
+#define warnf(fmt,...) fprintf(stderr, "(Warning): " fmt "\n", __VA_ARGS__)
 
 #endif
 // vim:sw=4:ts=4
