@@ -18,3 +18,8 @@ Algorithms
 Others
 ------
 - reference counting (a'la kref in Linux kernel)
+
+Permutations
+------------
+- next permutation
+- permutation to index and vice versa
