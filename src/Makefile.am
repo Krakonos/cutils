@@ -12,15 +12,15 @@ check_PROGRAMS = stack_test \
 TESTS = stack_test queue_test htable_test
 
 # Stack test definition
-stack_test_SOURCES = stack_test.c
+stack_test_SOURCES = tests/stack_test.c
 stack_test_LDADD = libcutils.la
 
 # Queue test definition
-queue_test_SOURCES = queue_test.c
+queue_test_SOURCES = tests/queue_test.c
 queue_test_LDADD = libcutils.la
 
 # Hashtable test definition
-htable_test_SOURCES = htable_test.c
+htable_test_SOURCES = tests/htable_test.c
 htable_test_LDADD = libcutils.la
 
 
@@ -30,10 +30,12 @@ cutils_includedir = $(includedir)/cutils
 cutils_include_HEADERS = debug.h \
 						stack.h \
 						queue.h \
-						htable.h 
+						htable.h \
+						permutations/permutations.h
 lib_LTLIBRARIES = libcutils.la
 libcutils_la_SOURCES =  macro.h \
 						stack.c stack.h \
 						queue.c queue.h \
 						strhash.c strhash.h \
-						htable.c htable.h
+						htable.c htable.h \
+						permutations/permutations.c permutations/permutations.h
